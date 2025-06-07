@@ -61,7 +61,7 @@ export function ChapterList() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="flex h-full flex-col">
       {/* Desktop Header */}
       <div className="hidden md:block">
         <div className="flex items-center justify-center gap-3">
@@ -75,7 +75,7 @@ export function ChapterList() {
       </div>
 
       {/* Mobile Header */}
-      <div className=" hidden md:block">
+      <div className="hidden md:block">
         <p className="text-sm text-muted-foreground text-center">
           Chapter-wise Collection of {activeSubject.charAt(0).toUpperCase() + activeSubject.slice(1)} PYQs
         </p>
@@ -85,32 +85,34 @@ export function ChapterList() {
       <ChapterFilters />
 
       {/* Chapter List */}
-      <div className="space-y-3 px-4">
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">
-              Showing all chapters ({filteredChapters.length})
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {totalQuestions} Questions
-            </p>
+      <div className="flex-1 overflow-auto">
+        <div className="space-y-3 px-4">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground">
+                Showing all chapters ({filteredChapters.length})
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {totalQuestions} Questions
+              </p>
+            </div>
+            <button 
+              className="flex items-center gap-1 text-sm text-blue-600"
+              onClick={() => dispatch(toggleSort())}
+            >
+              {sort.ascending ? (
+                <ArrowUpIcon className="h-4 w-4" />
+              ) : (
+                <ArrowDownIcon className="h-4 w-4" />
+              )}
+              <span>Sort</span>
+            </button>
           </div>
-          <button 
-            className="flex items-center gap-1 text-sm text-blue-600"
-            onClick={() => dispatch(toggleSort())}
-          >
-            {sort.ascending ? (
-              <ArrowUpIcon className="h-4 w-4" />
-            ) : (
-              <ArrowDownIcon className="h-4 w-4" />
-            )}
-            <span>Sort</span>
-          </button>
-        </div>
-        <div className="grid grid-cols-1 gap-3">
-          {filteredChapters.map((chapter) => (
-            <ChapterCard key={chapter.chapter} chapter={chapter} />
-          ))}
+          <div className="grid grid-cols-1 gap-3 pb-4">
+            {filteredChapters.map((chapter) => (
+              <ChapterCard key={chapter.chapter} chapter={chapter} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

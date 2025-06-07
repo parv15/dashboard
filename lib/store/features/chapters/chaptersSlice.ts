@@ -53,6 +53,15 @@ export const chaptersSlice = createSlice({
     },
     setActiveSubject: (state, action: PayloadAction<string>) => {
       state.activeSubject = action.payload
+      // Reset filters when switching subjects
+      state.filters = {
+        classes: [],
+        units: [],
+        status: [],
+        weakChapters: false,
+      }
+      // Reset sort to default
+      state.sort.ascending = true
     },
     setClassFilter: (state, action: PayloadAction<string[]>) => {
       state.filters.classes = action.payload
