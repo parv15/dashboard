@@ -1,6 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ChapterData } from "@/lib/mock-data"
 
+export interface Chapter {
+  subject: string
+  chapter: string
+  class: string
+  unit: string
+  yearWiseQuestionCount: {
+    [year: string]: number
+  }
+  questionSolved: number
+  status: "Not Started" | "In Progress" | "Completed"
+  isWeakChapter: boolean
+}
+
 export type SortOption = "name" | "questions" | "progress"
 
 interface ChaptersState {

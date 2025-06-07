@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@/components/ui"
 import { RootState } from "@/lib/store/store"
-import { setSortOption } from "@/lib/store/features/chapters/chaptersSlice"
+import { toggleSort } from "@/lib/store/features/chapters/chaptersSlice"
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react"
 
 export function SortToggle() {
@@ -15,7 +15,7 @@ export function SortToggle() {
       variant="ghost"
       size="sm"
       className="flex items-center gap-1 text-sm text-muted-foreground"
-      onClick={() => dispatch(setSortOption("progress"))}
+      onClick={() => dispatch(toggleSort())}
     >
       <span>Sort</span>
       {sort.ascending ? (
